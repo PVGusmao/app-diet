@@ -1,19 +1,22 @@
-import React from 'react'
 import { StatusBar } from 'react-native';
+
+import React from 'react'
+import { useTheme } from 'styled-components';
 
 import { Container, Text } from './styles';
 
 import Header from '@components/Header';
-import { useTheme } from 'styled-components';
+import BlockData from '@components/BlockData';
 
 function Home(){
   const theme = useTheme()
 
   return (
     <Container>
+
       <Header />
 
-      <Text>Meu componente</Text>
+      <BlockData />
 
       <StatusBar
         translucent={false}

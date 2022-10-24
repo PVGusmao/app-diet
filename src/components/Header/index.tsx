@@ -7,9 +7,10 @@ import logo from '@assets/Logo.png';
 
 type Props = {
   showBackButton?: boolean;
+  showProfilePicture?: boolean;
 }
 
-function Header({ showBackButton = false}: Props){
+function Header({ showBackButton = false, showProfilePicture=false }: Props){
 
   const [image, setImage] = useState<string | null>(null);
 
@@ -38,13 +39,16 @@ function Header({ showBackButton = false}: Props){
           </BackButton>
           : <Logo source={logo} />
       }
-      <ButtonGetImage onPress={pickImage} >
       {
-        image
-        ? <Avatar source={{ uri: image }} />
-        : <Icon name="person-circle-outline" />
+        !showProfilePicture
+          && <ButtonGetImage onPress={pickImage} >
+            {
+              image
+              ? <Avatar source={{ uri: image }} />
+              : <Icon name="person-circle-outline" />
+            }
+          </ButtonGetImage>
       }
-      </ButtonGetImage>
     </Container>
   );
 }

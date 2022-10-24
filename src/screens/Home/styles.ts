@@ -4,7 +4,7 @@ export const Container = styled.View`
   align-items: center;
   flex: 1;
 
-  background-color: ${({ theme }) => theme.COLORS.BROWN_300};
+  background-color: ${({ theme }) => theme.COLORS.WHITE};
 `;
 
 export const Text = styled.Text`

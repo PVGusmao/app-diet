@@ -2,8 +2,8 @@ export default {
   COLORS: {
     WHITE: '#FFFFFF',
 
-    GREEN_700: '#00875F',
-    GREEN_500: '#00B37E',
+    GREEN_500: '#639339',
+    GREEN_200: '#E5F0DB',
 
     RED: '#F75A68',
     RED_DARK: '#AA2834',
@@ -22,6 +22,8 @@ export default {
     SM: 14,
     MD: 16,
     LG: 18,
-    XL: 24
+    XL: 24,
+    XXL: 30,
+    XXXL: 32,
   }
 };
