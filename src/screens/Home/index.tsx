@@ -3,7 +3,7 @@ import { StatusBar } from 'react-native';
 import React from 'react'
 import { useTheme } from 'styled-components';
 
-import { Container, Text } from './styles';
+import { Container } from './styles';
 
 import Header from '@components/Header';
 import BlockData from '@components/BlockData';
@@ -16,7 +16,10 @@ function Home(){
 
       <Header />
 
-      <BlockData />
+      <BlockData
+        information={`${90.86}%`}
+        description='das refeições dentro da dieta'
+      />
 
       <StatusBar
         translucent={false}
