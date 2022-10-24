@@ -13,7 +13,6 @@ export const Container = styled.View`
 `;
 
 export const ButtonGetImage = styled.TouchableOpacity`
-
 `
 
 export const Logo = styled.Image`
@@ -24,8 +23,20 @@ export const Avatar = styled.Image`
   align-items: center;
   justify-content: center;
 
+  border-radius: 50px;
+
   width: 48px;
   height: 48px;
+`
+  
+export const BackButton = styled.TouchableOpacity`
+
+`
+
+export const BackIcon = styled(Ionicons).attrs(({ theme }) => ({
+  color: theme.COLORS.BROWN_700,
+  size: 32
+}))`
 `
 
 export const Icon = styled(Ionicons).attrs(({ theme }) => ({
@@ -33,3 +44,4 @@ export const Icon = styled(Ionicons).attrs(({ theme }) => ({
   size: 48
 }))`
 `
+

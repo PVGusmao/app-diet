@@ -1,11 +1,15 @@
 import React, { useState } from 'react'
 
-import { Container, Avatar, ButtonGetImage, Icon, Logo } from './styles';
+import { Container, Avatar, ButtonGetImage, Icon, Logo, BackButton, BackIcon } from './styles';
 
 import * as ImagePicker from 'expo-image-picker';
 import logo from '@assets/Logo.png'; 
 
-function Header(){
+type Props = {
+  showBackButton?: boolean;
+}
+
+function Header({ showBackButton = false}: Props){
 
   const [image, setImage] = useState<string | null>(null);
 
@@ -27,11 +31,17 @@ function Header(){
 
   return (
     <Container>
-      <Logo source={logo} />
+      {
+        showBackButton
+          ? <BackButton>
+            <BackIcon name="arrow-back" />
+          </BackButton>
+          : <Logo source={logo} />
+      }
       <ButtonGetImage onPress={pickImage} >
       {
         image
-        ? <Avatar source={{ uri: image }} style={{ width: 200, height: 200 }} />
+        ? <Avatar source={{ uri: image }} />
         : <Icon name="person-circle-outline" />
       }
       </ButtonGetImage>
