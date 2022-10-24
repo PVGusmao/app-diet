@@ -7,6 +7,7 @@ import { Container } from './styles';
 
 import Header from '@components/Header';
 import BlockData from '@components/BlockData';
+import AddMeal from '@components/AddMeal';
 
 function Home(){
   const theme = useTheme()
@@ -21,6 +22,8 @@ function Home(){
         description='das refeições dentro da dieta'
       />
 
+      <AddMeal />
+      
       <StatusBar
         translucent={false}
         barStyle='light-content'
