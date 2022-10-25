@@ -1,10 +1,14 @@
 import React from 'react'
-import { Container, Text } from './styles';
+import { Container, Button, Text, AddIcon, Title } from './styles';
 
 function AddMeal(){
   return (
     <Container>
-      <Text>Meu componente</Text>
+      <Title>Refeições</Title>
+      <Button>
+        <AddIcon name="add"/>
+        <Text>Nova Refeição</Text>
+      </Button>
     </Container>
   );
 }
