@@ -5,6 +5,7 @@ export const Container = styled.View`
   justify-content: center;
 
   margin-top: 20px;
+  margin-bottom: 20px
 
   width: 100%;
   height: 50px;
