@@ -1,6 +1,7 @@
-import { FlatList, SectionList, StatusBar, Text } from 'react-native';
-
+import { SectionList, StatusBar, Text } from 'react-native';
 import React, { useEffect, useState } from 'react'
+
+import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 
 import { Container } from './styles';
@@ -12,9 +13,9 @@ import MealCard from '@components/MealCard';
 
 function Home(){
   const theme = useTheme();
+  const navigation = useNavigation();
 
   const [today, setToday] = useState('');
-
   const [meal, setMeal] = useState([{
     title: today,
     data: [{
@@ -28,6 +29,10 @@ function Home(){
       dietOrNot: true,
     }]
   }]);
+
+  function handleNavigation() {
+    navigation.navigate('statistics')
+  }
 
   function getDate() {
     const date = new Date();
@@ -51,6 +56,7 @@ function Home(){
       <Header />
 
       <BlockData
+        onPress={handleNavigation}
         information={`${90.86}%`}
         description='das refeições dentro da dieta'
       />

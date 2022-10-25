@@ -1,21 +1,31 @@
 import styled from 'styled-components/native'
 import { Feather } from '@expo/vector-icons';
 
-export const Container = styled.View`
+export type PaddingTypeStyleContainer = 20 | 0;
+export type BlockDataTypeStyle = 'PRIMARY' | 'SECONDARY';
+export type BlockBackColorTypeStyle = 'DARK' | 'LIGHT';
+
+type Props = {
+  padding: PaddingTypeStyleContainer;
+  type: BlockDataTypeStyle;
+  bgColorType: BlockBackColorTypeStyle;
+}
+
+export const Container = styled.View<Props>`
   align-items: center;
 
-  padding: 20px;
-  
-  width: 100%;
-  `;
+  padding: ${({ padding }) => padding === 20 ? 20 : 0}px;
 
-export const Button = styled.TouchableOpacity`
+  width: ${({ type }) => type === 'PRIMARY' ? 100 : 50}%;
+`;
+
+export const Button = styled.View<Props>`
   align-items: center;
   justify-content: center;
-  
-  background-color: ${({ theme }) => theme.COLORS.GREEN_200};
-  
+
   border-radius: 10px;
+  
+  background-color: ${({ theme, bgColorType }) => bgColorType === 'LIGHT' ? theme.COLORS.GREEN_500 : theme.COLORS.GREEN_200};
 
   height: 120px;
   width: 100%;
@@ -31,12 +41,15 @@ export const Description = styled.Text`
   font-size: ${({ theme }) => theme.FONT_SIZE.SM}px;
 `;
 
-export const DetailsIcon = styled(Feather).attrs(({ theme }) => ({
-  color: theme.COLORS.GREEN_500,
-  size: 30
-}))`
+export const DetailsButton = styled.TouchableOpacity`
   position: absolute;
 
-  top: 0;
-  right: 0;
+  top: 8px;
+  right: 8px;
+`
+
+export const DetailsIcon = styled(Feather).attrs(({ theme }) => ({
+  color: theme.COLORS.GREEN_500,
+  size: 40
+}))`
 `
