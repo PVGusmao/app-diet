@@ -1,9 +1,13 @@
 import React from 'react'
+import { TouchableOpacityProps } from 'react-native';
+
 import { Container, Button, Text, AddIcon, Title } from './styles';
 
-function AddMeal(){
+type Props = TouchableOpacityProps;
+
+function AddMeal({ ...rest }: Props){
   return (
-    <Container>
+    <Container { ...rest }>
       <Title>Refeições</Title>
       <Button>
         <AddIcon name="add"/>

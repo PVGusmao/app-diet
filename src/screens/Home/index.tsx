@@ -30,8 +30,8 @@ function Home(){
     }]
   }]);
 
-  function handleNavigation() {
-    navigation.navigate('statistics')
+  function handleNavigation(path: string) {
+    navigation.navigate(path)
   }
 
   function getDate() {
@@ -56,12 +56,12 @@ function Home(){
       <Header />
 
       <BlockData
-        onPress={handleNavigation}
+        onPress={() => handleNavigation('statistics')}
         information={`${90.86}%`}
         description='das refeições dentro da dieta'
       />
 
-      <AddMeal />
+      <AddMeal onPress={() => handleNavigation('newMeal')} />
 
       {/* <FlatList
         data={meal}

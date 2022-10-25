@@ -1,7 +1,7 @@
 import styled from 'styled-components/native'
 import { Ionicons } from '@expo/vector-icons';
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
   justify-content: center;
 
   margin-top: 20px;
@@ -21,7 +21,7 @@ export const Title = styled.Text`
   margin-bottom: 10px;
 `
 
-export const Button = styled.TouchableOpacity`
+export const Button = styled.View`
   align-self: center;
 
   background-color: ${({ theme }) => theme.COLORS.BROWN_700};
