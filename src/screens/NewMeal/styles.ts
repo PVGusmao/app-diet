@@ -14,7 +14,12 @@ export const Wrapper = styled.View`
 `
 
 export const Text = styled.Text`
-  color: red;
-  font-size: 16px;
-  font-weight: bold;
+  align-self: flex-start;
+
+  margin-left: 20px;
+  margin-bottom: 5px;
+
+  color: ${({ theme }) => theme.COLORS.BROWN_700};
+  font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
+  font-weight: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
 `;

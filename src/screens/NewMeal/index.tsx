@@ -1,9 +1,10 @@
 import React from 'react'
-import { Container, Wrapper } from './styles';
+import { Container, Text, Wrapper } from './styles';
 import { useNavigation } from '@react-navigation/native';
 
 import Header from '@components/Header';
 import Input from '@components/Input';
+import Button from '@components/Button';
 
 function NewMeal(){
   const navigation = useNavigation();
@@ -35,6 +36,14 @@ function NewMeal(){
         <Input placeholder='Data' size='HALF' />
         <Input placeholder='Hora' size='HALF' />
       </Wrapper>
+
+      <Text>Está dentro da dieta?</Text>
+
+      <Wrapper>
+        <Button title='Sim' />
+        <Button title='Não' type='NO' />
+      </Wrapper>
+
     </Container>
   );
 }

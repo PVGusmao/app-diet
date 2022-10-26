@@ -17,7 +17,7 @@ export const Container = styled.TextInput<Props>`
   padding: 10px;
   margin-bottom: 20px;
 
-  width: ${({ size }) => size === 'FULL' ? 90 : 40}%;
+  width: ${({ size }) => size === 'FULL' ? 90 : 45}%;
   height: ${({ height }) => height ? height : 50}px;
 `;
 
