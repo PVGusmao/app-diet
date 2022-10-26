@@ -1,10 +1,10 @@
-import { SectionList, StatusBar, Text } from 'react-native';
+import { SectionList, StatusBar } from 'react-native';
 import React, { useEffect, useState } from 'react'
 
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 
-import { Container } from './styles';
+import { Container, Text } from './styles';
 
 import Header from '@components/Header';
 import BlockData from '@components/BlockData';
@@ -30,7 +30,7 @@ function Home(){
     }]
   }]);
 
-  function handleNavigation(path: string) {
+  function handleNavigation(path: any) {
     navigation.navigate(path)
   }
 
@@ -61,7 +61,10 @@ function Home(){
         description='das refeições dentro da dieta'
       />
 
-      <AddMeal onPress={() => handleNavigation('newMeal')} />
+      <AddMeal
+        onPress={() => handleNavigation('newMeal')}
+        title='Nova Refeição'
+      />
 
       {/* <FlatList
         data={meal}
@@ -87,7 +90,7 @@ function Home(){
           />
         )}
         renderSectionHeader={() => (
-          <Text >{today}</Text>
+          <Text>{today}</Text>
         )}
         contentContainerStyle={{ width: '85%', marginVertical: 10 }}
       />

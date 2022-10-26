@@ -3,15 +3,24 @@ import { TouchableOpacityProps } from 'react-native';
 
 import { Container, Button, Text, AddIcon, Title } from './styles';
 
-type Props = TouchableOpacityProps;
+type Props = TouchableOpacityProps & {
+  title: string;
+  showIcon?: boolean;
+};
 
-function AddMeal({ ...rest }: Props){
+function AddMeal({ title, showIcon = true, ...rest }: Props){
   return (
     <Container { ...rest }>
-      <Title>Refeições</Title>
+      {
+        showIcon &&
+        <Title>Refeições</Title>
+      }
       <Button>
-        <AddIcon name="add"/>
-        <Text>Nova Refeição</Text>
+        {
+          showIcon &&
+          <AddIcon name="add"/>
+        }
+        <Text>{title}</Text>
       </Button>
     </Container>
   );

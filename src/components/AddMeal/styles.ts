@@ -5,12 +5,10 @@ export const Container = styled.TouchableOpacity`
   justify-content: center;
 
   margin-top: 20px;
-  margin-bottom: 20px
+  margin-bottom: 20px;
 
   width: 100%;
   height: 50px;
-
-  background-color: ${({ theme }) => theme.COLORS.WHITE};
 `;
 
 export const Title = styled.Text`

@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import Header from '@components/Header';
 import Input from '@components/Input';
 import Button from '@components/Button';
+import AddMeal from '@components/AddMeal';
 
 function NewMeal(){
   const navigation = useNavigation();
@@ -44,6 +45,12 @@ function NewMeal(){
         <Button title='Não' type='NO' />
       </Wrapper>
 
+      <Wrapper>
+        <AddMeal
+          title='Cadastrar Refeição'
+          showIcon={false}
+        />
+      </Wrapper>
     </Container>
   );
 }
