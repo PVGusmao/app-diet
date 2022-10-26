@@ -1,15 +1,18 @@
-import React from 'react';
-import { Container, InputName, NewInput } from './styles';
+import React from 'react'
+import { TextInputProps } from 'react-native';
 
-type Props = {
-  name: string;
+
+import { Container, InputSizeStyleType, Text } from './styles';
+
+type Props = TextInputProps & {
+  size?: InputSizeStyleType;
+  height?: number;
 }
 
-function Input({name}: Props){
+function Input({ size = 'FULL', height, ...rest }: Props){
   return (
-    <Container>
-      <InputName>{name}</InputName>
-      <NewInput />
+    <Container height={height} {...rest} size={size}>
+
     </Container>
   );
 }

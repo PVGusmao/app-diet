@@ -1,30 +1,28 @@
-import styled from 'styled-components/native';
+import styled from 'styled-components/native'
 
-export const Container = styled.View`
-  justify-content: center;
+export type InputSizeStyleType = 'FULL' | 'HALF';
 
-  width: 90%;
-  height: 50px;
+type Props = {
+  size: InputSizeStyleType;
+  height: number;
+}
 
-  /* background-color: black; */
-`;
+export const Container = styled.TextInput<Props>`
+  font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
+  font-family: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
 
-export const InputName = styled.Text`
-  color: ${({ theme }) => theme.COLORS.BROWN_700};
-
-  font-size: ${({ theme }) => theme.FONT_SIZE.LG}px;
-  font-weight: ${({ theme }) => theme.FONT_FAMILY.BOLD};
-`;
-
-export const NewInput = styled.TextInput`
-  width: 100%;
-  height: 50px;
+  border: 1px solid ${({ theme }) => theme.COLORS.BROWN_400};
+  border-radius: 10px;
 
   padding: 10px;
+  margin-bottom: 20px;
 
-  font-size: ${({ theme }) => theme.FONT_SIZE.LG}px;
-  font-weight: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
+  width: ${({ size }) => size === 'FULL' ? 90 : 40}%;
+  height: ${({ height }) => height ? height : 50}px;
+`;
 
-  border-radius: 10px;
-  border: 1px solid ${({ theme }) => theme.COLORS.BROWN_400}
-`
+export const Text = styled.Text`
+  color: red;
+  font-size: 16px;
+  font-weight: bold;
+`;

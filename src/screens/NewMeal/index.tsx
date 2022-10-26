@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Text } from './styles';
+import { Container, Wrapper } from './styles';
 import { useNavigation } from '@react-navigation/native';
 
 import Header from '@components/Header';
@@ -19,7 +19,22 @@ function NewMeal(){
         showBackButton
         showProfilePicture
       />
-      <Input name='Nome' />
+
+      <Input
+        placeholder='Digite o nome'
+      />
+      
+      <Input
+        placeholder='Descrição'
+        multiline={true}
+        height={150}
+        textAlignVertical='top'
+      />
+      
+      <Wrapper>
+        <Input placeholder='Data' size='HALF' />
+        <Input placeholder='Hora' size='HALF' />
+      </Wrapper>
     </Container>
   );
 }
