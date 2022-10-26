@@ -7,6 +7,10 @@ export const Container = styled.View`
   background-color: ${({ theme }) => theme.COLORS.WHITE};
 `;
 
+export const Wrapper = styled.View`
+  width: 90%;
+`
+
 export const Text = styled.Text`
   color: ${({ theme }) => theme.COLORS.BROWN_700};
   font-size: ${({ theme }) => theme.FONT_SIZE.LG}px;

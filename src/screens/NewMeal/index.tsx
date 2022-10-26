@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Text, Wrapper } from './styles';
+import { Body, Container, Text, Wrapper } from './styles';
 import { useNavigation } from '@react-navigation/native';
 
 import Header from '@components/Header';
@@ -10,8 +10,12 @@ import AddMeal from '@components/AddMeal';
 function NewMeal(){
   const navigation = useNavigation();
 
-  function handleNavigation() {
-    navigation.goBack();
+  function handleNavigation(path: any) {
+    if (path.length) {
+      navigation.navigate(path);  
+    } else {
+      navigation.goBack();
+    }
   }
 
   return (
@@ -20,37 +24,41 @@ function NewMeal(){
         onPress={handleNavigation}
         showBackButton
         showProfilePicture
+        showTitle
+        title='Nova Refeição'
       />
-
-      <Input
-        placeholder='Digite o nome'
-      />
-      
-      <Input
-        placeholder='Descrição'
-        multiline={true}
-        height={150}
-        textAlignVertical='top'
-      />
-      
-      <Wrapper>
-        <Input placeholder='Data' size='HALF' />
-        <Input placeholder='Hora' size='HALF' />
-      </Wrapper>
-
-      <Text>Está dentro da dieta?</Text>
-
-      <Wrapper>
-        <Button title='Sim' />
-        <Button title='Não' type='NO' />
-      </Wrapper>
-
-      <Wrapper>
-        <AddMeal
-          title='Cadastrar Refeição'
-          showIcon={false}
+      <Body>
+        <Input
+          placeholder='Digite o nome'
         />
-      </Wrapper>
+        
+        <Input
+          placeholder='Descrição'
+          multiline={true}
+          height={150}
+          textAlignVertical='top'
+        />
+        
+        <Wrapper>
+          <Input placeholder='Data' size='HALF' />
+          <Input placeholder='Hora' size='HALF' />
+        </Wrapper>
+
+        <Text>Está dentro da dieta?</Text>
+
+        <Wrapper>
+          <Button title='Sim' />
+          <Button title='Não' type='NO' />
+        </Wrapper>
+
+        <Wrapper>
+          <AddMeal
+            onPress={() => handleNavigation('feedbackCreation')}
+            title='Cadastrar Refeição'
+            showIcon={false}
+          />
+        </Wrapper>
+      </Body>
     </Container>
   );
 }

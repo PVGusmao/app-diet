@@ -16,7 +16,7 @@ export const MainInformation = styled.View`
 
   margin: 20px 0px;
 
-  flex: 0.25;
+  flex: 0.08;
 `
 
 export const OtherInformation = styled.View`

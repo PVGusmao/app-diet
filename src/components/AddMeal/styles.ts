@@ -9,6 +9,8 @@ export const Container = styled.TouchableOpacity`
 
   width: 100%;
   height: 50px;
+
+  background-color: white;
 `;
 
 export const Title = styled.Text`
@@ -24,7 +26,7 @@ export const Button = styled.View`
 
   background-color: ${({ theme }) => theme.COLORS.BROWN_700};
 
-  width: 90%;
+  width: 100%;
   height: 100%;
 
   border-radius: 10px;

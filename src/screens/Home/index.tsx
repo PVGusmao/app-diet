@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
 
-import { Container, Text } from './styles';
+import { Container, Text, Wrapper } from './styles';
 
 import Header from '@components/Header';
 import BlockData from '@components/BlockData';
@@ -60,24 +60,12 @@ function Home(){
         information={`${90.86}%`}
         description='das refeições dentro da dieta'
       />
-
-      <AddMeal
-        onPress={() => handleNavigation('newMeal')}
-        title='Nova Refeição'
-      />
-
-      {/* <FlatList
-        data={meal}
-        keyExtractor={item => item.name}
-        renderItem={(item) => (
-          <MealCard
-            nameOfTheMEal={item.item.name}
-            timeOfTheMeal={item.item.time}
-            type={item.item.dietOrNot === true ? 'DIET' : 'NOT DIET'}
-          />
-        )}
-        contentContainerStyle={{ width: '85%' }}
-      /> */}
+      <Wrapper>
+        <AddMeal
+          onPress={() => handleNavigation('newMeal')}
+          title='Nova Refeição'
+        />
+      </Wrapper>
 
       <SectionList
         sections={meal}

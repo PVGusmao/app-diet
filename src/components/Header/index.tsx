@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Container, Avatar, ButtonGetImage, Icon, Logo, BackButton, BackIcon } from './styles';
+import { Container, Avatar, ButtonGetImage, Icon, Logo, BackButton, BackIcon, Title } from './styles';
 
 import * as ImagePicker from 'expo-image-picker';
 import logo from '@assets/Logo.png'; 
@@ -8,9 +8,17 @@ import { TouchableOpacityProps } from 'react-native';
 type Props = TouchableOpacityProps & {
   showBackButton?: boolean;
   showProfilePicture?: boolean;
+  showTitle?: boolean;
+  title?: string;
 }
 
-function Header({ showBackButton = false, showProfilePicture=false, ...rest }: Props){
+function Header({
+  title,
+  showTitle = false,
+  showBackButton = false,
+  showProfilePicture=false,
+  ...rest
+}: Props){
 
   const [image, setImage] = useState<string | null>(null);
 
@@ -36,6 +44,7 @@ function Header({ showBackButton = false, showProfilePicture=false, ...rest }: P
         showBackButton
           ? <BackButton { ...rest }>
             <BackIcon name="arrow-back" />
+            {showTitle && <Title>{title}</Title>}
           </BackButton>
           : <Logo source={logo} />
       }

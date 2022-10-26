@@ -19,13 +19,12 @@ function Statistics(){
 
   return (
     <Container>
-      
-      <MainInformation>
         <Header
           onPress={handleNavigation}
           showBackButton
           showProfilePicture
         />
+      <MainInformation>
         <BlockData
           detailsIcon
           padding={0}
