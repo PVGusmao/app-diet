@@ -24,12 +24,12 @@ function Home(){
       dietOrNot: true,
     },
     {
-      name: 'Pão, presunto e queijo muzzarella',
+      name: 'Arroz, feijão e bife com fritas',
       time: '20:00',
-      dietOrNot: true,
+      dietOrNot: false,
     }]
   }]);
-
+  
   function handleNavigation(path: any) {
     navigation.navigate(path)
   }
@@ -48,7 +48,7 @@ function Home(){
 
   useEffect(() => {
     getDate();
-  }, [])
+  }, [meal])
 
   return (
     <Container>
