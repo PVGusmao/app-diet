@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native';
 
 import feedbackNeg from '@assets/feedbackNeg.png';
@@ -8,6 +8,8 @@ import { Container, Image, SubTitle, Title, Wrapper } from './styles';
 
 import AddMeal from '@components/AddMeal';
 import { getAllRegistration } from '@storage/registration/getAllRegistration';
+import { mealCreate } from '@storage/meal/mealCreate';
+import { getAllMeal } from '@storage/meal/getAllMeal';
 
 type Props = {
   onDiet: boolean;
@@ -25,11 +27,18 @@ function FeebackCreation({onDiet}: Props) {
   }
 
   async function getRegistration() {
-    const data = await getAllRegistration()
-    console.log(data);
+    const data = await getAllRegistration();
+    
+    await mealCreate(data);
+
+    const response = await getAllMeal();
+    
+    console.log(response);
   }
 
-  getRegistration();
+  useEffect(() => {
+    getRegistration();
+  }, [])
 
   return (
     <Container>
@@ -50,6 +59,7 @@ function FeebackCreation({onDiet}: Props) {
           onPress={() => handleNavigation('home')}
         />
       </Wrapper>
+
     </Container>
   );
 }

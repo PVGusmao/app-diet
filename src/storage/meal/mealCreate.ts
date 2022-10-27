@@ -30,24 +30,25 @@ export async function mealCreate({ name, description, date, hour, dietOrNot }: P
       
       await AsyncStorage.setItem(MEAL_COLLECTION, JSON.stringify(meals))
 
-    } else if (storage.date === date){
-      const mealObj = storage.find((element: any) => element.date === date);
-      mealObj.data.push(mealDetails);
-
-      await AsyncStorage.setItem(MEAL_COLLECTION, JSON.stringify(storage))
-
     } else {
-      const obj = {
-        date,
-        data:[mealDetails]
+      if (storage.date === date){
+        const mealObj = storage.find((element: any) => element.date === date);
+        mealObj.data.push(mealDetails);
+
+        await AsyncStorage.setItem(MEAL_COLLECTION, JSON.stringify(storage))
+
+      } else {
+        const obj = {
+          date,
+          data:[mealDetails]
+        }
+
+        storage.push(obj);
+
+        await AsyncStorage.setItem(MEAL_COLLECTION, JSON.stringify(storage));
+        
       }
-
-      storage.push(obj);
-
-      await AsyncStorage.setItem(MEAL_COLLECTION, JSON.stringify(storage));
-      
     }
-
   } catch (error) {
     throw error;
   }

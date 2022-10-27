@@ -15,7 +15,7 @@ import AddMeal from '@components/AddMeal';
 type registrationType = {
   name: string;
   description: string;
-  data: string;
+  date: string;
   hour: string;
   dietOrNot: boolean | null;
 }
@@ -26,7 +26,7 @@ function NewMeal(){
   const [registrationState, setRegistrationState] = useState<registrationType>({
     name: '',
     description: '',
-    data: '',
+    date: '',
     hour: '',
     dietOrNot: null,
   })
@@ -36,7 +36,7 @@ function NewMeal(){
         if (
           !registrationState.name.length
           || !registrationState.description.length 
-          || !registrationState.data.length
+          || !registrationState.date.length
           || !registrationState.hour.length
           || registrationState.dietOrNot === null
         ) {
@@ -54,8 +54,6 @@ function NewMeal(){
 
     registration(stringRegistration);
   }
-
-  console.log(registrationState)
 
   return (
     <Container>
@@ -88,8 +86,8 @@ function NewMeal(){
           <Input
             placeholder='Data'
             size='HALF'
-            value={registrationState.data}
-            onChangeText={(text: string) => setRegistrationState({ ...registrationState, data: text})}
+            value={registrationState.date}
+            onChangeText={(text: string) => setRegistrationState({ ...registrationState, date: text})}
           />
 
           <Input
