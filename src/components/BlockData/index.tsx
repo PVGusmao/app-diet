@@ -1,5 +1,6 @@
 import React from 'react'
 import { TouchableOpacityProps } from 'react-native';
+
 import { BlockBackColorTypeStyle, BlockDataTypeStyle, Button,
   Container, Description, DetailsButton, DetailsIcon,
   Information, PaddingTypeStyleContainer } from './styles';
