@@ -7,6 +7,7 @@ import feedbackPos from '@assets/feedbackPos.png';
 import { Container, Image, SubTitle, Title, Wrapper } from './styles';
 
 import AddMeal from '@components/AddMeal';
+import { getAllRegistration } from '@storage/registration/getAllRegistration';
 
 type Props = {
   onDiet: boolean;
@@ -22,6 +23,13 @@ function FeebackCreation({onDiet}: Props) {
       navigation.goBack();
     }
   }
+
+  async function getRegistration() {
+    const data = await getAllRegistration()
+    console.log(data);
+  }
+
+  getRegistration();
 
   return (
     <Container>

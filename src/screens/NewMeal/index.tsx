@@ -5,27 +5,41 @@ import { Body, Container, Text, Wrapper } from './styles';
 
 import { useNavigation } from '@react-navigation/native';
 
+import { registration } from '@storage/registration/registration';
+
 import Header from '@components/Header';
 import Input from '@components/Input';
 import Button from '@components/Button';
 import AddMeal from '@components/AddMeal';
 
+type registrationType = {
+  name: string;
+  description: string;
+  data: string;
+  hour: string;
+  dietOrNot: boolean | null;
+}
+
 function NewMeal(){
   const navigation = useNavigation();
 
-  const [registration, setRegistration] = useState({
+  const [registrationState, setRegistrationState] = useState<registrationType>({
     name: '',
     description: '',
     data: '',
     hour: '',
-    dietOrNot: false,
+    dietOrNot: null,
   })
-  const [back, setBack] = useState(false);
 
   function handleNavigation(path?: any) {
       if (path.length) {
-        if (!registration.name.length || !registration.description.length 
-          || !registration.data.length || !registration.hour.length) {
+        if (
+          !registrationState.name.length
+          || !registrationState.description.length 
+          || !registrationState.data.length
+          || !registrationState.hour.length
+          || registrationState.dietOrNot === null
+        ) {
             Alert.alert('Cadastro', 'Preencha corretamente o formulário');
             return
           }
@@ -35,7 +49,13 @@ function NewMeal(){
       }
   }
 
-  console.log(registration)
+  function handleRegistration() {
+    const stringRegistration = JSON.stringify(registrationState);
+
+    registration(stringRegistration);
+  }
+
+  console.log(registrationState)
 
   return (
     <Container>
@@ -51,32 +71,32 @@ function NewMeal(){
       <Body>
         <Input
           placeholder='Digite o nome'
-          value={registration.name}
-          onChangeText={(text: string) => setRegistration({ ...registration, name: text})}
+          value={registrationState.name}
+          onChangeText={(text: string) => setRegistrationState({ ...registrationState, name: text})}
         />
         
         <Input
           placeholder='Descrição'
           multiline={true}
           height={150}
-          value={registration.description}
+          value={registrationState.description}
           textAlignVertical='top'
-          onChangeText={(text: string) => setRegistration({ ...registration, description: text})}
+          onChangeText={(text: string) => setRegistrationState({ ...registrationState, description: text})}
         />
         
         <Wrapper>
           <Input
             placeholder='Data'
             size='HALF'
-            value={registration.data}
-            onChangeText={(text: string) => setRegistration({ ...registration, data: text})}
+            value={registrationState.data}
+            onChangeText={(text: string) => setRegistrationState({ ...registrationState, data: text})}
           />
 
           <Input
             placeholder='Hora'
             size='HALF'
-            value={registration.hour}
-            onChangeText={(text: string) => setRegistration({ ...registration, hour: text})}
+            value={registrationState.hour}
+            onChangeText={(text: string) => setRegistrationState({ ...registrationState, hour: text})}
           />
         </Wrapper>
 
@@ -84,22 +104,25 @@ function NewMeal(){
 
         <Wrapper>
           <Button
-            clicked={registration.dietOrNot ? true : ''}
+            clicked={registrationState.dietOrNot ? true : ''}
             title='Sim'
-            onPress={() => setRegistration({ ...registration, dietOrNot: true})}
+            onPress={() => setRegistrationState({ ...registrationState, dietOrNot: true })}
           />
 
           <Button
-            clicked={!registration.dietOrNot ? false : ''}
+            clicked={!registrationState.dietOrNot ? false : ''}
             title='Não'
             type='NO'
-            onPress={() => setRegistration({ ...registration, dietOrNot: false})}
+            onPress={() => setRegistrationState({ ...registrationState, dietOrNot: false})}
           />
         </Wrapper>
 
         <Wrapper>
           <AddMeal
-            onPress={() => handleNavigation('feedbackCreation')}
+            onPress={() =>{ 
+              handleRegistration();
+              handleNavigation('feedbackCreation');
+            }}
             title='Cadastrar Refeição'
             showIcon={false}
           />

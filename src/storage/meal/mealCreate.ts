@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { getAllMeal } from "./getAllMeal";
 
-import { MEAL_COLLECTION } from "./storageConfig";
+import { MEAL_COLLECTION } from "../config/storageConfig";
 
 type Props = {
   name: string;
