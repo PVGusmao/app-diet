@@ -14,6 +14,8 @@ export const Body = styled.View`
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
 
+  padding-top: 20px;
+
   background-color: ${({ theme }) => theme.COLORS.WHITE};
 `
 
@@ -29,7 +31,7 @@ export const Text = styled.Text`
   align-self: flex-start;
 
   margin-left: 20px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 
   color: ${({ theme }) => theme.COLORS.BROWN_700};
   font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;

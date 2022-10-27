@@ -6,11 +6,12 @@ import { Container, Icon, Text, YesOrNoButtonTypeStyle } from './styles';
 type Props = TouchableHighlightProps & {
   type?: YesOrNoButtonTypeStyle;
   title: string;
+  clicked: string | boolean;
 }
 
-function Button({title, type = 'YES', ...rest}: Props){
+function Button({clicked, title, type = 'YES', ...rest}: Props){
   return (
-    <Container {...rest}>
+    <Container clicked={clicked} {...rest}>
       <Icon type={type} name="dot-fill" />
       <Text>{title}</Text>
     </Container>

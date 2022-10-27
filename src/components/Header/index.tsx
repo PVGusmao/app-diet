@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import { TouchableOpacityProps } from 'react-native';
+
 import { Container, Avatar, ButtonGetImage, Icon, Logo, BackButton, BackIcon, Title } from './styles';
 
 import * as ImagePicker from 'expo-image-picker';
+
 import logo from '@assets/Logo.png'; 
-import { TouchableOpacityProps } from 'react-native';
 
 type Props = TouchableOpacityProps & {
   showBackButton?: boolean;

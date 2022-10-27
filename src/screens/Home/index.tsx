@@ -15,39 +15,26 @@ function Home(){
   const theme = useTheme();
   const navigation = useNavigation();
 
-  const [today, setToday] = useState('');
-  const [meal, setMeal] = useState([{
-    title: today,
-    data: [{
-      name: 'Pão, presunto e queijo muzzarella',
-      time: '20:00',
-      dietOrNot: true,
-    },
-    {
-      name: 'Arroz, feijão e bife com fritas',
-      time: '20:00',
-      dietOrNot: false,
-    }]
-  }]);
+  const [meal, setMeal] = useState([]);
   
   function handleNavigation(path: any) {
     navigation.navigate(path)
   }
 
-  function getDate() {
-    const date = new Date();
+  // function getDate() {
+  //   const date = new Date();
 
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
+  //   let day = date.getDate();
+  //   let month = date.getMonth() + 1;
+  //   let year = date.getFullYear();
 
-    const actualDate = `${day}/${month}/${year}`;
+  //   const actualDate = `${day}/${month}/${year}`;
 
-    setToday(actualDate);
-  }
+  //   setToday(actualDate);
+  // }
 
   useEffect(() => {
-    getDate();
+    
   }, [meal])
 
   return (
@@ -60,6 +47,7 @@ function Home(){
         information={`${90.86}%`}
         description='das refeições dentro da dieta'
       />
+
       <Wrapper>
         <AddMeal
           onPress={() => handleNavigation('newMeal')}
@@ -78,7 +66,7 @@ function Home(){
           />
         )}
         renderSectionHeader={() => (
-          <Text>{today}</Text>
+          <Text>Today</Text>
         )}
         contentContainerStyle={{ width: '85%', marginVertical: 10 }}
       />

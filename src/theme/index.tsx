@@ -8,7 +8,7 @@ export default {
     GREEN_200: '#E7F0D1',
     GREEN_100: '#F1F9EA',
 
-    RED: '#F75A68',
+    RED: '#FFCCCB',
     RED_DARK: '#AA2834',
 
     BROWN_700: '#2A0800',

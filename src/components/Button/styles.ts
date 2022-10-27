@@ -1,13 +1,14 @@
-import styled from 'styled-components/native'
+import styled, { css } from 'styled-components/native'
 import { Octicons } from '@expo/vector-icons';
 
 export type YesOrNoButtonTypeStyle = 'YES' | 'NO';
 
 type Props = {
   type: YesOrNoButtonTypeStyle;
+  clicked: string | boolean;
 }
 
-export const Container = styled.TouchableOpacity`
+export const Container = styled.TouchableOpacity<Props>`
   align-items: center;
   justify-content: center;
 
@@ -19,6 +20,26 @@ export const Container = styled.TouchableOpacity`
 
   padding: 10px 10px;
   width: 45%;
+
+  ${({clicked}) => {
+    switch (clicked) {
+      case true:
+        return css`
+          border: 1px solid ${({ theme }) => theme.COLORS.GREEN_500};
+
+          background-color: ${({ theme }) => theme.COLORS.GREEN_200};
+        `;
+      case false:
+        return css`
+          border: 1px solid ${({ theme }) => theme.COLORS.RED_DARK};
+          
+          background-color: ${({ theme }) => theme.COLORS.RED};
+        `;
+      default:
+        return css`
+        `;
+    }
+  }}
 `;
 
 export const Icon = styled(Octicons).attrs<Props>(({ theme, type }) => ({
