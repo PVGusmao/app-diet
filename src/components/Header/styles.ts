@@ -5,14 +5,16 @@ import { Ionicons } from '@expo/vector-icons';
 export const Container = styled.View`
   align-items: center;
   justify-content: space-between;
-  flex: 0.15;
+  /* flex: 0.15; */
 
   flex-direction: row;
 
   padding: 20px;
   padding-bottom: 20px;
-  width: 100%;
 
+  /* background-color: red; */
+
+  width: 100%;
 `;
 
 export const ButtonGetImage = styled.TouchableOpacity`

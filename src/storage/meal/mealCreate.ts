@@ -31,7 +31,7 @@ export async function mealCreate({ name, description, date, hour, dietOrNot }: P
       await AsyncStorage.setItem(MEAL_COLLECTION, JSON.stringify(meals))
 
     } else {
-      if (storage.date === date){
+      if (storage.some((element: any) => element.date === date)){
         const mealObj = storage.find((element: any) => element.date === date);
         mealObj.data.push(mealDetails);
 

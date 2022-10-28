@@ -1,5 +1,5 @@
-import { SectionList, StatusBar } from 'react-native';
 import React, { useEffect, useState } from 'react'
+import { SectionList, StatusBar } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from 'styled-components';
@@ -19,23 +19,10 @@ function Home(){
   const theme = useTheme();
   const navigation = useNavigation();
 
-  const [today, setToday] = useState('');
   const [meal, setMeal] = useState([]);
   
   function handleNavigation(path: any) {
     navigation.navigate(path)
-  }
-
-  function getDate() {
-    const date = new Date();
-
-    let day = date.getDate();
-    let month = date.getMonth() + 1;
-    let year = date.getFullYear();
-
-    const actualDate = `${day}/${month}/${year}`;
-
-    setToday(actualDate);
   }
 
   async function getMeal() {
@@ -45,7 +32,7 @@ function Home(){
 
   useEffect(() => {
     getMeal();
-  }, [])
+  }, [meal])
 
   return (
     <Container>
@@ -70,18 +57,22 @@ function Home(){
         keyExtractor={(item, index) => item.name + index}
         renderItem={({ item }) => (
           <MealCard
-            nameOfTheMEal={'item.name'}
-            timeOfTheMeal={'item.time'}
+            nameOfTheMEal={item.description}
+            timeOfTheMeal={item.hour}
             type={item.dietOrNot === true ? 'DIET' : 'NOT DIET'}
           />
         )}
-        renderSectionHeader={() => (
-          <Text>{'date'}</Text>
+        renderSectionHeader={(item: any) => (
+          <Text>{`${item.section.date}`}</Text>
         )}
-        contentContainerStyle={{ width: '85%', marginVertical: 10 }}
+        contentContainerStyle={{
+          width: '75.5%',
+          marginVertical: 10,
+          paddingBottom: 50
+        }}
       />
-      
-      <Button onPress={removeAllMeal} clicked title='Push me'/>
+
+      {/* <Button onPress={removeAllMeal} clicked title='Push me'/> */}
 
       <StatusBar
         translucent={false}

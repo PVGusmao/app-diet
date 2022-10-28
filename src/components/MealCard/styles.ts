@@ -10,12 +10,13 @@ type Props = {
 export const Container = styled.View`
   align-items: center;
   justify-content: space-between;
+
   flex-direction: row;
 
   height: 50px;
   width: 100%;
 
-  margin: 5px 0;
+  margin: 5px 0px;
   
   border: 1px solid ${({ theme }) => theme.COLORS.BROWN_300};
   border-radius: 5px;

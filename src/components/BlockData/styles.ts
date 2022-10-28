@@ -17,6 +17,8 @@ export const Container = styled.View<Props>`
   padding: ${({ padding }) => padding === 20 ? 20 : 0}px;
 
   width: ${({ type }) => type === 'PRIMARY' ? 100 : 50}%;
+
+  /* background-color: blue; */
 `;
 
 export const Button = styled.View<Props>`

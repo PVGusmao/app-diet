@@ -4,11 +4,15 @@ export const Container = styled.View`
   align-items: center;
   flex: 1;
 
+  width: 100%;
+
   background-color: ${({ theme }) => theme.COLORS.WHITE};
 `;
 
 export const Wrapper = styled.View`
   width: 90%;
+
+  /* background-color: yellow; */
 `
 
 export const Text = styled.Text`

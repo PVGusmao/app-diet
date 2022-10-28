@@ -10,7 +10,7 @@ export const Container = styled.TouchableOpacity`
   width: 100%;
   height: 50px;
 
-  background-color: white;
+  /* background-color: green; */
 `;
 
 export const Title = styled.Text`
