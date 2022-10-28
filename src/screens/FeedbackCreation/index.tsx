@@ -12,11 +12,12 @@ import { mealCreate } from '@storage/meal/mealCreate';
 import { getAllMeal } from '@storage/meal/getAllMeal';
 
 type Props = {
-  onDiet: boolean;
+  route: any;
 }
 
-function FeebackCreation({onDiet}: Props) {
+function FeebackCreation({ route}: Props) {
   const navigation = useNavigation();
+  const { dietOrNot } = route.params;
 
   function handleNavigation(path: any) {
     if (path) {
@@ -40,17 +41,19 @@ function FeebackCreation({onDiet}: Props) {
     getRegistration();
   }, [])
 
+  console.log(dietOrNot);
+
   return (
     <Container>
-      <Title>{onDiet ? 'Continue Assim!' : 'Que Pena!'}</Title>
+      <Title>{dietOrNot ? 'Continue Assim!' : 'Que Pena!'}</Title>
       <SubTitle>
         {
-          onDiet
+          dietOrNot
           ? 'Você continua dentro da dieta. Muito bem!'
           : 'Você saiu da dieta dessa vez, mas continue se esforçando e não desista!'
         }
       </SubTitle>
-      <Image source={onDiet ? feedbackPos : feedbackNeg} />
+      <Image source={dietOrNot ? feedbackPos : feedbackNeg} />
 
       <Wrapper>
         <AddMeal

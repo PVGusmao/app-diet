@@ -1,15 +1,20 @@
 import React, { useState } from 'react'
 import { Alert } from 'react-native';
 
-import { Body, Container, Text, Wrapper } from './styles';
+import { Body, Container, Text, Wrapper, Button, TextButton } from './styles';
 
 import { useNavigation } from '@react-navigation/native';
 
 import { registration } from '@storage/registration/registration';
 
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+
+import Date from 'src/interface/date.interface';
+import Time from 'src/interface/time.interface';
+
 import Header from '@components/Header';
 import Input from '@components/Input';
-import Button from '@components/Button';
+import ButtonN from '@components/Button';
 import AddMeal from '@components/AddMeal';
 
 type registrationType = {
@@ -23,6 +28,8 @@ type registrationType = {
 function NewMeal(){
   const navigation = useNavigation();
 
+  const [isDateOrTime, setIsDateOrTime] = useState<any>('');
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   const [registrationState, setRegistrationState] = useState<registrationType>({
     name: '',
     description: '',
@@ -30,6 +37,31 @@ function NewMeal(){
     hour: '',
     dietOrNot: null,
   })
+
+  function showDatePicker() {
+    setDatePickerVisibility(true);
+  };
+
+  function hideDatePicker() {
+    setDatePickerVisibility(false);
+  };
+
+  function handleConfirmTime(time: Time): void {
+    const hour = +time.getUTCHours() - 3;
+    const minutes = time.getUTCMinutes();
+    setRegistrationState({ ...registrationState, hour: `${hour}:${minutes}`});
+    console.warn("A date has been picked: ", `${hour}:${minutes}`);
+    hideDatePicker();
+  };
+
+  function handleConfirmDate(date: Date): void {
+    const year = date.getFullYear();
+    const month = +date.getMonth() + 1;
+    const day = date.getUTCDate();
+    setRegistrationState({ ...registrationState, date: `${day}/${month}/${year}`});
+    console.warn("A date has been picked: ", `${day}/${month}/${year}`);
+    hideDatePicker();
+  };
 
   function handleNavigation(path?: any) {
       if (path.length) {
@@ -43,7 +75,7 @@ function NewMeal(){
             Alert.alert('Cadastro', 'Preencha corretamente o formulário');
             return
           }
-        navigation.navigate(path);  
+        navigation.navigate(path, { dietOrNot: registrationState.dietOrNot});  
       } else {
         navigation.goBack();
       }
@@ -57,6 +89,13 @@ function NewMeal(){
 
   return (
     <Container>
+
+      <DateTimePickerModal
+        isVisible={isDatePickerVisible}
+        mode={isDateOrTime}
+        onConfirm={isDateOrTime === 'date' ? handleConfirmDate : handleConfirmTime}
+        onCancel={hideDatePicker}
+      />
       
       <Header
         onPress={ handleNavigation }
@@ -83,31 +122,38 @@ function NewMeal(){
         />
         
         <Wrapper>
-          <Input
-            placeholder='Data'
-            size='HALF'
-            value={registrationState.date}
-            onChangeText={(text: string) => setRegistrationState({ ...registrationState, date: text})}
-          />
+          <Button onPress={() => {
+            setIsDateOrTime('date')
+            showDatePicker()
+          }}>
+            <TextButton>Date</TextButton>
+          </Button>
 
-          <Input
+          <Button onPress={() => {
+            setIsDateOrTime('time')
+            showDatePicker()
+          }}>
+            <TextButton>Time</TextButton>
+          </Button>
+
+          {/* <Input
             placeholder='Hora'
             size='HALF'
             value={registrationState.hour}
             onChangeText={(text: string) => setRegistrationState({ ...registrationState, hour: text})}
-          />
+          /> */}
         </Wrapper>
 
         <Text>Está dentro da dieta?</Text>
 
         <Wrapper>
-          <Button
+          <ButtonN
             clicked={registrationState.dietOrNot ? true : ''}
             title='Sim'
             onPress={() => setRegistrationState({ ...registrationState, dietOrNot: true })}
           />
 
-          <Button
+          <ButtonN
             clicked={!registrationState.dietOrNot ? false : ''}
             title='Não'
             type='NO'

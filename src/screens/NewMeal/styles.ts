@@ -19,6 +19,24 @@ export const Body = styled.View`
   background-color: ${({ theme }) => theme.COLORS.WHITE};
 `
 
+export const Button = styled.TouchableOpacity`
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  border: 1px solid ${({ theme }) => theme.COLORS.BROWN_400};
+
+  height: 50px;
+  width: 45%;
+`
+
+export const TextButton = styled.Text`
+  color: ${({ theme }) => theme.COLORS.BROWN_700};
+  font-size: ${({ theme }) => theme.FONT_SIZE.MD}px;
+  font-weight: ${({ theme }) => theme.FONT_FAMILY.REGULAR};
+`
+
 export const Wrapper = styled.View`
   align-items: center;
   justify-content: space-between;
