@@ -8,6 +8,7 @@ import { Container, Text, Wrapper } from './styles';
 
 import { getAllMeal } from '@storage/meal/getAllMeal';
 import { removeAllMeal } from '@storage/meal/removeAll'
+import { getStatistics } from '@storage/statistics/getStatistis';
 
 import Header from '@components/Header';
 import BlockData from '@components/BlockData';
@@ -20,14 +21,37 @@ function Home(){
   const navigation = useNavigation();
 
   const [meal, setMeal] = useState([]);
+  const [statistics, setStatistics] = useState({
+    inDietMealSequence: 0,
+    totalMeal: 0,
+    inDietMeal: 0,
+    outDietMeal: 0,
+  });
   
   function handleNavigation(path: any) {
-    navigation.navigate(path)
+    navigation.navigate(path, { statistics })
   }
 
   async function getMeal() {
     const data = await getAllMeal();
     setMeal(data);
+  }
+
+  function handleTotalMeal() {
+
+    // setStatistics({ ...statistics, totalMeal: meal.length })
+
+    // const dietMeal = meal.reduce((acc, curr: any) => {
+    //   return acc + curr.data.filter((element: any) => element.dietOrNot).length
+    // }, 0);
+    // setStatistics({ ...statistics, inDietMeal: dietMeal });
+
+    // const outDiet = meal.reduce((acc, curr: any) => {
+    //   return acc + curr.data.filter((element: any) => !element.dietOrNot).length
+    // }, 0);
+    // setStatistics({ ...statistics, outDietMeal: outDiet }),
+
+    console.log(meal.length);
   }
 
   useEffect(() => {
@@ -40,7 +64,10 @@ function Home(){
       <Header />
 
       <BlockData
-        onPress={() => handleNavigation('statistics')}
+        onPress={() => {
+          handleTotalMeal();
+          handleNavigation('statistics')
+        }}
         information={`${90.86}%`}
         description='das refeições dentro da dieta'
       />
@@ -66,13 +93,17 @@ function Home(){
           <Text>{`${item.section.date}`}</Text>
         )}
         contentContainerStyle={{
-          width: '75.5%',
+          alignItems: 'center',
+          width: '100%',
           marginVertical: 10,
           paddingBottom: 50
         }}
       />
 
-      {/* <Button onPress={removeAllMeal} clicked title='Push me'/> */}
+      <Button onPress={
+        // removeAllMeal
+        handleTotalMeal
+      } clicked title='Push me'/>
 
       <StatusBar
         translucent={false}

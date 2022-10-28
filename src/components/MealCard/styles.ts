@@ -14,7 +14,7 @@ export const Container = styled.View`
   flex-direction: row;
 
   height: 50px;
-  width: 100%;
+  width: 90%;
 
   margin: 5px 0px;
   
@@ -24,7 +24,9 @@ export const Container = styled.View`
 
 export const TimeOfTheMeal = styled.Text`
   color: ${({ theme }) => theme.COLORS.BROWN_700};
-  
+
+  width: 50px;
+
   margin-left: 20px;
 `;
 
@@ -33,16 +35,18 @@ export const Separator = styled.Text`
 `
 
 export const NameOfTheMeal = styled.Text`
+  text-align: center;
 
+  width: 250px;
 `;
 
 export const DietOrNotMeal = styled(Octicons).attrs<Props>(({ theme, type }) => ({
-  color: type === 'DIET' ? theme.COLORS.GREEN_500 : theme.COLORS.RED,
+  color: type === 'DIET' ? theme.COLORS.GREEN_500 : theme.COLORS.RED_DARK,
   size: 32
 }))`
   opacity: 0.5;
   margin-right: 20px;
-`
+`;
 
 export const Text = styled.Text`
   color: red;

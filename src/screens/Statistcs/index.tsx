@@ -2,6 +2,8 @@ import React from 'react'
 import { useTheme } from 'styled-components';
 import { useNavigation } from '@react-navigation/native';
 
+import Route from 'src/interface/route.interface';
+
 import Header from '@components/Header';
 import BlockData from '@components/BlockData';
 
@@ -9,9 +11,17 @@ import { StatusBar } from 'react-native';
 
 import { BlockDataWrapper, Container, MainInformation, OtherInformation, Text } from './styles';
 
-function Statistics(){
+type Props = {
+  route: Route;
+}
+
+function Statistics({ route }: Props){
   const theme = useTheme();
   const navigation = useNavigation();
+
+  const statistics = route.params;
+
+  console.log(statistics)
 
   function handleNavigation() {
     navigation.goBack();
@@ -48,7 +58,7 @@ function Statistics(){
           detailsIcon
           padding={20}
           description='refeições registradas'
-          information={`${109}`}
+          information={`${0}`}
         />
 
 

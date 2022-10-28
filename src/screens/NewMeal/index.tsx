@@ -136,12 +136,6 @@ function NewMeal(){
             <TextButton>Time</TextButton>
           </Button>
 
-          {/* <Input
-            placeholder='Hora'
-            size='HALF'
-            value={registrationState.hour}
-            onChangeText={(text: string) => setRegistrationState({ ...registrationState, hour: text})}
-          /> */}
         </Wrapper>
 
         <Text>Está dentro da dieta?</Text>

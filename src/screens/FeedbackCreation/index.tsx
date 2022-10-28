@@ -15,7 +15,7 @@ type Props = {
   route: any;
 }
 
-function FeebackCreation({ route}: Props) {
+function FeebackCreation({ route }: Props) {
   const navigation = useNavigation();
   const { dietOrNot } = route.params;
 
