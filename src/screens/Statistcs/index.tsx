@@ -1,4 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+
+import { StatusBar } from 'react-native';
+
 import { useTheme } from 'styled-components';
 import { useNavigation } from '@react-navigation/native';
 
@@ -7,9 +10,10 @@ import Route from 'src/interface/route.interface';
 import Header from '@components/Header';
 import BlockData from '@components/BlockData';
 
-import { StatusBar } from 'react-native';
-
 import { BlockDataWrapper, Container, MainInformation, OtherInformation, Text } from './styles';
+
+import Stats from 'src/interface/stats.interface';
+import Middle from 'src/interface/middleStats.interface';
 
 type Props = {
   route: Route;
@@ -19,13 +23,15 @@ function Statistics({ route }: Props){
   const theme = useTheme();
   const navigation = useNavigation();
 
-  const statistics = route.params;
-
-  console.log(statistics)
+  const statistic: Stats = route.params;
 
   function handleNavigation() {
     navigation.goBack();
   }
+  
+  useEffect(() => {
+    console.log(statistic)
+  }, [])
 
   return (
     <Container>
@@ -39,7 +45,7 @@ function Statistics({ route }: Props){
           detailsIcon
           padding={0}
           description='das refeições dentro da dieta'
-          information={`${ 90.86 }%`}
+          information={`${((statistic.inDietMeal) * 100) / statistic.totalMeal}%`}
         />
       </MainInformation>
       
@@ -58,7 +64,7 @@ function Statistics({ route }: Props){
           detailsIcon
           padding={20}
           description='refeições registradas'
-          information={`${0}`}
+          information={`${statistic.totalMeal}`}
         />
 
 
@@ -69,7 +75,7 @@ function Statistics({ route }: Props){
             type='SECONDARY'
             padding={20}
             description='refeições dentro da dieta'
-            information={`${99}`}
+            information={`${statistic.inDietMeal}`}
           />
 
           <BlockData
@@ -77,7 +83,7 @@ function Statistics({ route }: Props){
             type='SECONDARY'
             padding={20}
             description='refeições fora da dieta'
-            information={`${22}`}
+            information={`${statistic.outDietMeal}`}
           />
         </BlockDataWrapper>
       </OtherInformation>

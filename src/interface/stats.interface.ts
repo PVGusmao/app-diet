@@ -3,4 +3,5 @@ export default interface Stats {
   inDietMealSequence: number,
   outDietMeal: number,
   totalMeal: number,
+  statistic: Stats,
 }

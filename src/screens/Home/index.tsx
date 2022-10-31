@@ -10,6 +10,10 @@ import { getAllMeal } from '@storage/meal/getAllMeal';
 import { removeAllMeal } from '@storage/meal/removeAll'
 import { getStatistics } from '@storage/statistics/getStatistis';
 
+import Meal from 'src/interface/meal.interface';
+import Stats from 'src/interface/stats.interface';
+import SingleMeal from 'src/interface/singleMeal.interface';
+
 import Header from '@components/Header';
 import BlockData from '@components/BlockData';
 import AddMeal from '@components/AddMeal';
@@ -20,16 +24,11 @@ function Home(){
   const theme = useTheme();
   const navigation = useNavigation();
 
-  const [meal, setMeal] = useState([]);
-  const [statistics, setStatistics] = useState({
-    inDietMealSequence: 0,
-    totalMeal: 0,
-    inDietMeal: 0,
-    outDietMeal: 0,
-  });
+  const [meal, setMeal] = useState<Meal[] | any>([]);
+  const [statistics, setStatistics] = useState<Stats>({} as Stats);
   
   function handleNavigation(path: any) {
-    navigation.navigate(path, { statistics })
+    navigation.navigate(path, statistics)
   }
 
   async function getMeal() {
@@ -38,20 +37,32 @@ function Home(){
   }
 
   function handleTotalMeal() {
+    // Total Meal
 
-    // setStatistics({ ...statistics, totalMeal: meal.length })
+    const total: any = meal.reduce((acc: Meal, curr: Meal): any => {
+      const value: number = acc.data.length + curr.data.length;
 
-    // const dietMeal = meal.reduce((acc, curr: any) => {
-    //   return acc + curr.data.filter((element: any) => element.dietOrNot).length
-    // }, 0);
-    // setStatistics({ ...statistics, inDietMeal: dietMeal });
+      return value;
+    })
 
-    // const outDiet = meal.reduce((acc, curr: any) => {
-    //   return acc + curr.data.filter((element: any) => !element.dietOrNot).length
-    // }, 0);
-    // setStatistics({ ...statistics, outDietMeal: outDiet }),
+    const dietMeal: number = meal.reduce((acc: number, curr: Meal | any): number => {
+      return acc + curr.data.filter((element: SingleMeal) => element.dietOrNot).length
+    }, 0);
 
-    console.log(meal.length);
+    const outDiet: number = meal.reduce((acc: number, curr: Meal | any): number => {
+      return acc + curr.data.filter((element: SingleMeal) => !element.dietOrNot).length
+    }, 0);
+
+    const obj: Stats = {
+      inDietMeal: dietMeal,
+      inDietMealSequence: 0,
+      outDietMeal: outDiet,
+      totalMeal: total,
+    }
+
+    setStatistics(obj);
+
+    console.log(obj);
   }
 
   useEffect(() => {

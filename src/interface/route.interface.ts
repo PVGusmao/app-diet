@@ -5,4 +5,5 @@ export default interface Route {
   name: string,
   params: Stats,
   path: string | undefined,
+  statistics: Stats;
 }
