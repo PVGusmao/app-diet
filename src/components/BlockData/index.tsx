@@ -12,6 +12,7 @@ type Props = TouchableOpacityProps & {
   type?: BlockDataTypeStyle,
   padding?: PaddingTypeStyleContainer,
   backgroundColorType?: BlockBackColorTypeStyle,
+  inOrOutDiet?: boolean,
 }
 
 function BlockData({
@@ -20,6 +21,7 @@ function BlockData({
   padding = 20,
   information,
   description,
+  inOrOutDiet = false,
   detailsIcon = false,
   ...rest
 }: Props) {
@@ -30,7 +32,9 @@ function BlockData({
       padding={padding}
       { ...rest }
     >
-      <Button>
+      <Button
+        inOrOutDiet={inOrOutDiet}
+      >
         {
           !detailsIcon &&
           <DetailsButton { ...rest }>

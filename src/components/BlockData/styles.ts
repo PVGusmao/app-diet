@@ -9,6 +9,7 @@ type Props = {
   padding: PaddingTypeStyleContainer;
   type: BlockDataTypeStyle;
   bgColorType: BlockBackColorTypeStyle;
+  inOrOutDiet: boolean;
 }
 
 export const Container = styled.View<Props>`
@@ -27,7 +28,7 @@ export const Button = styled.View<Props>`
 
   border-radius: 10px;
   
-  background-color: ${({ theme, bgColorType }) => bgColorType === 'LIGHT' ? theme.COLORS.GREEN_500 : theme.COLORS.GREEN_200};
+  background-color: ${({ theme, inOrOutDiet }) => !inOrOutDiet ? theme.COLORS.GREEN_200 : theme.COLORS.RED};
 
   height: 120px;
   width: 100%;

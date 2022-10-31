@@ -11,7 +11,7 @@ type Props = {
 function MealCard({ timeOfTheMeal, nameOfTheMEal, type = 'DIET' }: Props){
   return (
     <Container>
-      <TimeOfTheMeal>{timeOfTheMeal}</TimeOfTheMeal>
+      <TimeOfTheMeal>{timeOfTheMeal.split(':')[1] === '0' ? timeOfTheMeal + '0': timeOfTheMeal}</TimeOfTheMeal>
       <Separator>|</Separator>
       <NameOfTheMeal>{nameOfTheMEal}</NameOfTheMeal>
       <DietOrNotMeal type={type} name="dot-fill" />

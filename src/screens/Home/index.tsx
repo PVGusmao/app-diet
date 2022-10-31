@@ -37,21 +37,16 @@ function Home(){
   }
 
   function handleTotalMeal() {
-    // Total Meal
 
-    const total: any = meal.reduce((acc: Meal, curr: Meal): any => {
-      const value: number = acc.data.length + curr.data.length;
+    let total: number = 0;
+    let dietMeal: number = 0;
+    let outDiet: number = 0;
 
-      return value;
+    meal.forEach((element: Meal): void => {
+      total += element.data.length ? element.data.length : 0;
+      dietMeal += element.data.length ? (element.data.filter((item: SingleMeal) => item.dietOrNot)).length : 0;
+      outDiet += element.data.length ? (element.data.filter((item: SingleMeal) => !item.dietOrNot)).length : 0;
     })
-
-    const dietMeal: number = meal.reduce((acc: number, curr: Meal | any): number => {
-      return acc + curr.data.filter((element: SingleMeal) => element.dietOrNot).length
-    }, 0);
-
-    const outDiet: number = meal.reduce((acc: number, curr: Meal | any): number => {
-      return acc + curr.data.filter((element: SingleMeal) => !element.dietOrNot).length
-    }, 0);
 
     const obj: Stats = {
       inDietMeal: dietMeal,
@@ -59,10 +54,9 @@ function Home(){
       outDietMeal: outDiet,
       totalMeal: total,
     }
-
+    
     setStatistics(obj);
 
-    console.log(obj);
   }
 
   useEffect(() => {

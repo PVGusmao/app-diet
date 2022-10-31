@@ -12,12 +12,14 @@ type Props = TouchableOpacityProps & {
   showProfilePicture?: boolean;
   showTitle?: boolean;
   title?: string;
+  inOrOutDiet? : boolean;
 }
 
 function Header({
   title,
   showTitle = false,
   showBackButton = false,
+  inOrOutDiet = true,
   showProfilePicture=false,
   ...rest
 }: Props){
@@ -41,7 +43,7 @@ function Header({
   };
 
   return (
-    <Container>
+    <Container inOrOutDiet={inOrOutDiet}>
       {
         showBackButton
           ? <BackButton { ...rest }>

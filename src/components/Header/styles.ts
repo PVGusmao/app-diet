@@ -2,7 +2,11 @@ import styled from 'styled-components/native'
 
 import { Ionicons } from '@expo/vector-icons';
 
-export const Container = styled.View`
+type Props = {
+  inOrOutDiet?: boolean;
+}
+
+export const Container = styled.View<Props>`
   align-items: center;
   justify-content: space-between;
   /* flex: 0.15; */
@@ -12,7 +16,7 @@ export const Container = styled.View`
   padding: 20px;
   padding-bottom: 20px;
 
-  /* background-color: red; */
+  background-color: ${({ theme, inOrOutDiet }) => inOrOutDiet ? theme.COLORS.GREEN_200 : theme.COLORS.RED};
 
   width: 100%;
 `;

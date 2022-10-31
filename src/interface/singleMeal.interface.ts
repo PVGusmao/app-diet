@@ -3,5 +3,7 @@ export default interface SingleMeal {
   dietOrNot: boolean;
   hour: string;
   name: string;
-  length: number;
+  length?: number;
+  
+  filter(arg0: (item: SingleMeal) => boolean): number;
 }
