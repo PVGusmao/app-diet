@@ -73,7 +73,8 @@ function Home(){
           handleTotalMeal();
           handleNavigation('statistics')
         }}
-        information={`${90.86}%`}
+        inOrOutDiet={((statistics.inDietMeal * 100) / statistics.totalMeal) <= 50 ? true : false}
+        information={`${isNaN((statistics.inDietMeal * 100) / statistics.totalMeal) ? 0 : ((statistics.inDietMeal * 100) / statistics.totalMeal).toFixed(2)}%`}
         description='das refeições dentro da dieta'
       />
 
