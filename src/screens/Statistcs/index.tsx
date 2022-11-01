@@ -30,7 +30,7 @@ function Statistics({ route }: Props){
   }
   
   useEffect(() => {
-    setStatistic(allData)
+    setStatistic(allData);
   }, [])
 
   return (
@@ -58,7 +58,7 @@ function Statistics({ route }: Props){
           backgroundColorType='LIGHT'
           padding={20}
           description='melhor sequência de pratos dentro da dieta'
-          information={`${22}`}
+          information={`${statistic.inDietMealSequence}`}
         />
 
         <BlockData

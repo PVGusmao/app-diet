@@ -16,6 +16,7 @@ import Header from '@components/Header';
 import Input from '@components/Input';
 import ButtonN from '@components/Button';
 import AddMeal from '@components/AddMeal';
+import { setCounter } from '@storage/counter/setCounter';
 
 type registrationType = {
   name: string;
@@ -81,8 +82,10 @@ function NewMeal(){
       }
   }
 
-  function handleRegistration() {
+  async function handleRegistration() {
+    await setCounter(registrationState.dietOrNot)
     const stringRegistration = JSON.stringify(registrationState);
+
 
     registration(stringRegistration);
   }

@@ -9,6 +9,8 @@ import { Container, Text, Wrapper } from './styles';
 import { getAllMeal } from '@storage/meal/getAllMeal';
 import { removeAllMeal } from '@storage/meal/removeAll'
 import { getStatistics } from '@storage/statistics/getStatistis';
+import { getCounter } from '@storage/counter/getCounter';
+import { setCounter } from '@storage/counter/setCounter';
 
 import Meal from 'src/interface/meal.interface';
 import Stats from 'src/interface/stats.interface';
@@ -36,11 +38,14 @@ function Home(){
     setMeal(data);
   }
 
-  function handleTotalMeal() {
+  async function handleTotalMeal() {
+
+    const counter = await getCounter();
 
     let total: number = 0;
     let dietMeal: number = 0;
     let outDiet: number = 0;
+    let inDietMealSequence: number = counter;
 
     meal.forEach((element: Meal): void => {
       total += element.data.length ? element.data.length : 0;
@@ -50,7 +55,7 @@ function Home(){
 
     const obj: Stats = {
       inDietMeal: dietMeal,
-      inDietMealSequence: 0,
+      inDietMealSequence: inDietMealSequence,
       outDietMeal: outDiet,
       totalMeal: total,
     }
@@ -61,7 +66,8 @@ function Home(){
 
   useEffect(() => {
     getMeal();
-  }, [meal])
+    handleTotalMeal();
+  }, [])
 
   return (
     <Container>
@@ -106,10 +112,11 @@ function Home(){
         }}
       />
 
-      <Button onPress={
+      {/* <Button onPress={
         // removeAllMeal
-        handleTotalMeal
-      } clicked title='Push me'/>
+        // handleTotalMeal
+        getCounter
+      } clicked title='Push me'/> */}
 
       <StatusBar
         translucent={false}
