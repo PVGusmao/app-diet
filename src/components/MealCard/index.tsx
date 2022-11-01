@@ -1,16 +1,18 @@
 import React from 'react'
+import { TouchableOpacityProps } from 'react-native';
+
 import { Container, TimeOfTheMeal, NameOfTheMeal,
   DietOrNotMeal, DietOrNotMealTypeStyle, Separator } from './styles';
 
-type Props = {
+type Props = TouchableOpacityProps & {
   timeOfTheMeal: string;
   nameOfTheMEal: string;
   type?: DietOrNotMealTypeStyle;
 }
 
-function MealCard({ timeOfTheMeal, nameOfTheMEal, type = 'DIET' }: Props){
+function MealCard({ timeOfTheMeal, nameOfTheMEal, type = 'DIET', ...rest }: Props){
   return (
-    <Container>
+    <Container { ...rest }>
       <TimeOfTheMeal>{timeOfTheMeal.split(':')[1] === '0' ? timeOfTheMeal + '0': timeOfTheMeal}</TimeOfTheMeal>
       <Separator>|</Separator>
       <NameOfTheMeal>{nameOfTheMEal}</NameOfTheMeal>

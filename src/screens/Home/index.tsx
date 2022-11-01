@@ -29,7 +29,7 @@ function Home(){
   const [meal, setMeal] = useState<Meal[] | any>([]);
   const [statistics, setStatistics] = useState<Stats>({} as Stats);
   
-  function handleNavigation(path: any) {
+  function handleNavigation(path: string): void {
     navigation.navigate(path, statistics)
   }
 
@@ -94,11 +94,13 @@ function Home(){
       <SectionList
         sections={meal}
         keyExtractor={(item, index) => item.name + index}
-        renderItem={({ item }) => (
+        renderItem={(item) => (
+          // console.log(item.section.date)
           <MealCard
-            nameOfTheMEal={item.description}
-            timeOfTheMeal={item.hour}
-            type={item.dietOrNot === true ? 'DIET' : 'NOT DIET'}
+            onPress={() => navigation.navigate('detailsScreen', item)}
+            nameOfTheMEal={item.item.description}
+            timeOfTheMeal={item.item.hour}
+            type={item.item.dietOrNot === true ? 'DIET' : 'NOT DIET'}
           />
         )}
         renderSectionHeader={(item: any) => (
@@ -107,7 +109,7 @@ function Home(){
         contentContainerStyle={{
           alignItems: 'center',
           width: '100%',
-          marginVertical: 10,
+          marginVertical: 20,
           paddingBottom: 50
         }}
       />

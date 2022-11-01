@@ -6,21 +6,22 @@ import { Container, Button, Text, AddIcon, Title } from './styles';
 type Props = TouchableOpacityProps & {
   title: string;
   showIcon?: boolean;
+  filled?: boolean;
 };
 
-function AddMeal({ title, showIcon = true, ...rest }: Props){
+function AddMeal({filled = false, title, showIcon = true, ...rest }: Props){
   return (
     <Container { ...rest }>
       {
         showIcon &&
         <Title>Refeições</Title>
       }
-      <Button>
+      <Button filled={filled}>
         {
           showIcon &&
           <AddIcon name="add"/>
         }
-        <Text>{title}</Text>
+        <Text filled={filled}>{title}</Text>
       </Button>
     </Container>
   );

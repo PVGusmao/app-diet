@@ -19,6 +19,8 @@ export const Container = styled.View<Props>`
 
   width: ${({ type }) => type === 'PRIMARY' ? 100 : 50}%;
 
+  margin-bottom: 10px;
+
   /* background-color: blue; */
 `;
 

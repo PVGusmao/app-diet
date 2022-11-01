@@ -7,7 +7,7 @@ type Props = {
   type: DietOrNotMealTypeStyle;
 }
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
   align-items: center;
   justify-content: space-between;
 
